@@ -1,0 +1,37 @@
+// 스택을 통한 SUM함수 전달
+.data
+
+.text
+.globl _asm_main
+.globl _asm_sum
+
+_asm_main:
+    stp x29, x30, [sp, #-16]!   // 스택 프레임 생성
+    mov x29, sp
+
+    // push 1
+    mov w0, #1
+    str w0, [sp, #-16]!         // sp -= 16, [sp] = 1
+
+    // push 2
+    mov w0, #2
+    str w0, [sp, #-16]!         // sp -= 16, [sp] = 2
+
+    bl _asm_sum                 // 두 값을 스택에서 읽어 더함
+
+    add sp, sp, #32             // (16 + 16) 스택 정리
+
+    ldp x29, x30, [sp], #16     // 이전 프레임 복구
+    ret
+
+//--------------------------------------------------
+
+_asm_sum:
+    ldr w1, [sp]                // 맨 위값 = 2
+    ldr w2, [sp, #16]           // 그 다음값 = 1
+
+    add w0, w1, w2              // w0 = w1 + w2
+
+    ret
+
+

@@ -1,0 +1,16 @@
+// 함수를 통해서 인자를 전달
+.data
+
+.text
+
+.globl _asm_main
+
+_asm_main:
+
+// 100을 x0에 저장
+mov  x0, #100
+
+ret
+
+
+

@@ -1,0 +1,21 @@
+.text
+
+.globl _asm_main
+.globl _asm_foo
+
+// 스택에 함수저장
+_asm_main:
+// AAA의 주소를 계산해서 스택에 push
+    adrp x2, AAA@PAGE
+    add  x2, x2, AAA@PAGEOFF
+    str  x2, [sp, #-16]!     // push x1 (sp -= 16, [sp] = x1) 스택에 돌아올 주소를 넣기 psuh ebx
+    b    _asm_foo            // _asm_foo로 분기
+
+AAA:
+    ret                      // _asm_foo가 끝나면 여기로 돌아옴
+
+
+_asm_foo:
+    mov  x0, #300            // x0에 300 저장
+    ldr  x2, [sp], #16       // pop x1 (x1 = [sp], sp += 16) 스택에서 저장한 주소 꺼내기 pop ebx
+    br   x2                  // x1 주소로 점프 (복귀)

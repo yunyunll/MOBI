@@ -1,0 +1,41 @@
+// 함수 인자 받아서 함수 파괴하기
+.data
+
+.text
+.globl _asm_main
+.globl _asm_sum
+
+_asm_main:
+    stp x29, x30, [sp, #-16]!
+    mov x29, sp
+
+    // push 1
+    mov w0, #1
+    str w0, [sp, #-16]!
+
+    // push 2
+    mov w0, #2
+    str w0, [sp, #-16]!
+
+    bl _asm_sum
+
+    add sp, sp, #32         // 두 값 pop
+
+    ldp x29, x30, [sp], #16
+    ret
+
+
+_asm_sum:
+    // 함수 프레임 생성
+    stp x29, x30, [sp, #-16]!
+    mov x29, sp
+
+    // 스택에서 push된 값 2개 읽기
+    ldr w1, [x29, #16]      // 2
+    ldr w2, [x29, #32]      // 1
+
+    add w0, w1, w2          // w0 = w1 + w2
+
+    // 함수 프레임 해제
+    ldp x29, x30, [sp], #16
+    ret

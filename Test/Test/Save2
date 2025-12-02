@@ -1,0 +1,32 @@
+.data
+;전역변수 만드는 곳
+_L1: .int 50 ; int L1 =. 0;이라는 뜻
+
+.text
+
+.globl _asm_main
+
+_asm_main:
+adrp x2, _L1@PAGE  // L1이 있는 페이지 주소
+add  x2, x2, _L1@PAGEOFF ;x2 = &_L1 // L1의 정확한 주소에서 4바이트 로드
+
+// 200을 w1에 저장
+mov  w1, #200
+
+// w1을 x2에 저장
+str  w1, [x2]
+
+// x2에서 다시 w1으로 읽기
+ldr  w1, [x2]
+
+// x0에 리턴값 저장
+mov  w0, w1
+
+ret
+
+
+;*p = 200;    mov w1, #200
+;            str w1, [x2]
+;x = *p;    ldr w0, [x2]
+
+
