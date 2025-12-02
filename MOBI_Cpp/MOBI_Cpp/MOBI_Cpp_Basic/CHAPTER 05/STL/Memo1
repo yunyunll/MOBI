@@ -1,0 +1,9 @@
+STL(Standard Template Library)
+Container - vector, map, set 등
+element들을 저장 및 관리하는 자료구조
+
+Iterator, - sort, find 등
+Container 순회를 위해 만들어진 객체(포인터처럼 사용)
+
+Algorithm - begin, end 등
+Container에 담긴 element등을 제어하는 알고리즘

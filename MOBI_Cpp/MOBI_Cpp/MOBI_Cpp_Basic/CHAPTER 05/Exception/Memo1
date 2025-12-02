@@ -1,0 +1,17 @@
+Exception 동작 원리
+동작원리 1. Stack Unwinding ( 스택 풀기)
+동작원리 2. Stack Unwinding ( 스택 풀기)
+동작원리 3. Stack Unwinding ( 스택 풀기) Exception 발생
+동작원리 4. Stack Unwinding Catch 블록이 없으니, 스택 풀기 클래스인 경우 소멸자가 호출
+동작원리 5. Stack Unwinding Catch 블록이 없으니, 스택 풀기 클래스인 경우 소멸자가 호출
+동작원리 6. Stack Unwinding Catch 블록이 없으니, 스택 풀기
+동작원리 7. Exception 정보가 객체 e에 담김
+
+스택프레임
+동작원리 1. main() int ret
+동작원리 2. run() int ret
+동작원리 3. divide() int a, int b - Exception 발생
+동작원리 4. divide() int a, int b - 스택 프레임제거, 객체 소멸
+동작원리 5. run() int ret - 스택 프레임제거, 객체 소멸
+동작원리 6. main() int ret - try블록 객체 소멸
+동작원리 7. main() exception

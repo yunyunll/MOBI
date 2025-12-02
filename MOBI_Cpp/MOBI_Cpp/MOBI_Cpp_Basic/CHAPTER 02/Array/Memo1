@@ -1,0 +1,16 @@
+ begin        : 맨 처음을 가리킨다
+ end          : 마지막 element 그 다음을 가리킨다
+ size         : 실제 데이터의 개수를 나타낸다
+ capacity     : 할당된 메모리 크기를 나타낸다
+
+ 재할당 동작 원리
+ 1. size() = capacity()가 차고 push_back 했지만 capacity 가 없음
+ 2. 먼저 더 큰 사이즈로 다른 메모리 영역을 할당하고 이곳에 데이터를 복사하여 옮겨둔다.
+ 3. 결과적으로 가능 -> 재할당 완료 복사를 이동하는 시간에 성능 저하가 일어남
+
+ 성능 최적화
+ 1. reserve()로 미리 할당
+ 2. push_pop() 제거 - 성능 저하가 없음
+ 3. erase(Target위치) : Target이후 데이터들을 하나씩 당겨 복사
+ 4. insertTarget위치, 값) : Target 이후 데이터들을 하나씩 밀어 복사 후 값 넣기
+ 5. shrint_to_fit() : 메모리 최적화 불필요한 capacity 줄임
